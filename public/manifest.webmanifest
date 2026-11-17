@@ -1,0 +1,31 @@
+{
+  "name": "RealVault MR",
+  "short_name": "RealVault",
+  "description": "Scan real furniture into a 1:8 hologram lab, catch blocked doorways and glare with Groq AI, and walk layouts at 1:1 AR scale.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0f141e",
+  "theme_color": "#0a84ff",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}

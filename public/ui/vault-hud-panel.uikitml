@@ -1,0 +1,212 @@
+<style>
+  .panel {
+    width: 52;
+    background-color: rgba(20, 22, 28, 0.9);
+    border-color: rgba(255, 255, 255, 0.16);
+    border-width: 0.08;
+    border-radius: 2.8;
+    padding-top: 2;
+    padding-bottom: 2;
+    padding-left: 2.2;
+    padding-right: 2.2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3;
+    color: #f3f4f6;
+    font-size: 1.9;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-size: 2.6;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .xr-btn {
+    background-color: #0a84ff;
+    border-color: rgba(255, 255, 255, 0.22);
+    border-width: 0.06;
+    border-radius: 1.6;
+    padding-top: 0.7;
+    padding-bottom: 0.7;
+    padding-left: 1.5;
+    padding-right: 1.5;
+    font-size: 1.7;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .xr-exit {
+    background-color: #3a3f4b;
+    border-color: rgba(255, 255, 255, 0.16);
+    border-width: 0.06;
+    border-radius: 1.6;
+    padding-top: 0.7;
+    padding-bottom: 0.7;
+    padding-left: 1.5;
+    padding-right: 1.5;
+    font-size: 1.7;
+    font-weight: 600;
+    color: #f8fafc;
+    cursor: pointer;
+  }
+
+  .mode-row {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8;
+  }
+
+  .mode-btn {
+    flex-grow: 1;
+    background-color: #262933;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-width: 0.06;
+    border-radius: 1.4;
+    padding-top: 0.9;
+    padding-bottom: 0.9;
+    padding-left: 1;
+    padding-right: 1;
+    font-size: 1.75;
+    font-weight: 600;
+    color: #b4bbc6;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.09);
+    border-width: 0.06;
+    border-radius: 1.8;
+    padding-top: 1.2;
+    padding-bottom: 1.2;
+    padding-left: 1.4;
+    padding-right: 1.4;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7;
+  }
+
+  .label-dim {
+    font-size: 1.45;
+    font-weight: 600;
+    color: #9ca3af;
+  }
+
+  .target-title {
+    font-size: 2.1;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .meta-line {
+    font-size: 1.65;
+    color: #d1d5db;
+  }
+
+  .btn-row {
+    display: flex;
+    flex-direction: row;
+    gap: 0.9;
+  }
+
+  .primary-btn {
+    flex-grow: 1;
+    background-color: #0a84ff;
+    border-radius: 1.4;
+    padding-top: 1;
+    padding-bottom: 1;
+    padding-left: 1.2;
+    padding-right: 1.2;
+    font-size: 1.8;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .secondary-btn {
+    flex-grow: 1;
+    background-color: #2c303b;
+    border-color: rgba(255, 255, 255, 0.12);
+    border-width: 0.06;
+    border-radius: 1.4;
+    padding-top: 1;
+    padding-bottom: 1;
+    padding-left: 1.2;
+    padding-right: 1.2;
+    font-size: 1.75;
+    font-weight: 600;
+    color: #f3f4f6;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .vault-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6;
+  }
+
+  .slot-btn {
+    background-color: #20242d;
+    border-color: rgba(255, 255, 255, 0.09);
+    border-width: 0.06;
+    border-radius: 1.2;
+    padding-top: 0.75;
+    padding-bottom: 0.75;
+    padding-left: 1.2;
+    padding-right: 1.2;
+    font-size: 1.65;
+    color: #d1d5db;
+    cursor: pointer;
+  }
+</style>
+
+<div class="panel">
+  <div class="header">
+    <span class="brand">RealVault MR</span>
+    <button id="xr-button" class="xr-btn">Enter AR</button>
+    <button id="exit-button" class="xr-exit">Exit AR</button>
+  </div>
+
+  <div class="mode-row">
+    <button id="mode-scan" class="mode-btn">1. Scan World</button>
+    <button id="mode-diorama" class="mode-btn">2. 1:8 Lab</button>
+    <button id="mode-fullscale" class="mode-btn">3. 1:1 Twin</button>
+  </div>
+
+  <div class="card">
+    <span class="label-dim">LIVE GAZE / POINTER TARGET</span>
+    <span id="target-name" class="target-title">Look at any real object</span>
+    <span id="target-dims" class="meta-line">Bounds: awaiting target lock</span>
+    <div class="btn-row">
+      <button id="btn-scan-target" class="primary-btn">Scan Target</button>
+      <button id="btn-scan-room" class="secondary-btn">Scan Room</button>
+      <button id="btn-classify-scans" class="secondary-btn">ID Scans</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <span id="vault-count-label" class="label-dim">VIRTUAL VAULT (0 STORED)</span>
+      <button id="btn-rotate-selected" class="secondary-btn">Rotate +45</button>
+    </div>
+    <div class="vault-list">
+      <button id="vault-slot-0" class="slot-btn">Slot 1: Empty - capture object</button>
+      <button id="vault-slot-1" class="slot-btn">Slot 2: Empty</button>
+      <button id="vault-slot-2" class="slot-btn">Slot 3: Empty</button>
+      <button id="vault-slot-3" class="slot-btn">Slot 4: Empty</button>
+      <button id="vault-slot-4" class="slot-btn">Slot 5: Empty</button>
+    </div>
+  </div>
+</div>

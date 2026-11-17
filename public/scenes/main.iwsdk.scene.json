@@ -1,0 +1,432 @@
+{
+  "version": "iwsdk.scene.v1",
+  "units": "meters",
+  "components": {
+    "com.iwsdk.components.DomeGradient": {
+      "sky": [0.74, 0.83, 0.94, 1],
+      "equator": [0.93, 0.9, 0.86, 1],
+      "ground": [0.88, 0.83, 0.77, 1],
+      "elevationDeg": 24,
+      "azimuthDeg": -31,
+      "dither": true
+    },
+    "com.iwsdk.components.IBLGradient": {
+      "sky": [0.82, 0.85, 0.92, 1],
+      "equator": [0.88, 0.86, 0.83, 1],
+      "ground": [0.6, 0.56, 0.52, 1],
+      "intensity": 0.42
+    }
+  },
+  "metadata": {},
+  "authoring": {
+    "views": [
+      {
+        "id": "hero",
+        "role": "hero",
+        "projection": "perspective",
+        "position": [0, 1.56, 0.38],
+        "target": [0, 1.05, -1.25],
+        "fov": 64
+      },
+      {
+        "id": "overview",
+        "role": "diagnostic",
+        "projection": "perspective",
+        "position": [2.2, 2.35, 1.6],
+        "target": [0, 0.75, -1.25],
+        "fov": 58
+      }
+    ]
+  },
+  "resources": {
+    "prefabs": []
+  },
+  "environment": {
+    "toneMapping": "aces",
+    "exposure": 1.08,
+    "shadows": true,
+    "shadowMapType": "pcf"
+  },
+  "nodes": [
+    {
+      "id": "vault-floor",
+      "name": "Clay Studio Floor",
+      "content": {
+        "type": "asset",
+        "asset": "vault-floor",
+        "receiveShadow": true
+      },
+      "transform": {
+        "position": [0, 0, 0]
+      },
+      "components": {
+        "com.iwsdk.components.LocomotionEnvironment": {},
+        "com.iwsdk.components.DomeFade": {
+          "start": 4.2,
+          "end": 10.5
+        },
+        "StageProp": {
+          "propRole": "studio-floor"
+        }
+      }
+    },
+    {
+      "id": "studio-backdrop",
+      "name": "Horizon Gallery Vignette",
+      "content": {
+        "type": "asset",
+        "asset": "studio-backdrop",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      "transform": {
+        "position": [0, 0, 0]
+      },
+      "components": {
+        "StageProp": {
+          "propRole": "backdrop"
+        }
+      }
+    },
+    {
+      "id": "ar-shadow-catcher",
+      "name": "AR Shadow Catcher",
+      "content": {
+        "type": "group"
+      },
+      "transform": {
+        "position": [0, 0.001, 0]
+      },
+      "components": {
+        "com.iwsdk.components.ShadowCatcher": {
+          "size": [12, 12],
+          "opacity": 0.28
+        }
+      }
+    },
+    {
+      "id": "sun-key-light",
+      "name": "Atelier Sun Key",
+      "transform": {
+        "position": [-4.6, 5.2, 1.8],
+        "rotationDeg": [-44, -60, 0]
+      },
+      "components": {
+        "com.iwsdk.components.DirectionalLight": {
+          "color": [1, 0.94, 0.84, 1],
+          "intensity": 2.85,
+          "castShadow": true,
+          "shadowMapSize": "2048",
+          "shadowCameraSize": 9,
+          "shadowCameraNear": 1,
+          "shadowCameraFar": 22,
+          "shadowRadius": 5,
+          "shadowBias": -0.0004,
+          "shadowNormalBias": 0.02
+        }
+      }
+    },
+    {
+      "id": "fill-hemi-light",
+      "name": "Morning Pavilion Fill",
+      "transform": {
+        "position": [0, 3, 0]
+      },
+      "components": {
+        "com.iwsdk.components.HemisphereLight": {
+          "skyColor": [0.76, 0.86, 0.98, 1],
+          "groundColor": [0.58, 0.5, 0.42, 1],
+          "intensity": 0.95
+        }
+      }
+    },
+    {
+      "id": "diorama-stage",
+      "name": "1:8 Mid-Air Diorama Pedestal",
+      "content": {
+        "type": "asset",
+        "asset": "diorama-pedestal",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      "transform": {
+        "position": [0, 1.09, -1.04],
+        "rotationDeg": [10, 0, 0],
+        "scale": 0.78
+      },
+      "components": {
+        "RayInteractable": {},
+        "OneHandGrabbable": {},
+        "DioramaStage": {
+          "active": true
+        }
+      }
+    },
+    {
+      "id": "capture-reticle",
+      "name": "Gaze Lock Reticle",
+      "content": {
+        "type": "asset",
+        "asset": "capture-reticle"
+      },
+      "transform": {
+        "position": [0, 1.2, -1.8]
+      }
+    },
+    {
+      "id": "real-desk",
+      "name": "Oak Studio Desk",
+      "content": {
+        "type": "asset",
+        "asset": "prop-desk",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      "transform": {
+        "position": [-1.08, 0, -2.35],
+        "rotationDeg": [0, 22, 0]
+      },
+      "components": {
+        "RayInteractable": {},
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "RealWorldTarget": {
+          "targetKey": "stage-desk",
+          "label": "Oak Studio Desk",
+          "semanticLabel": "table",
+          "archetype": "desk",
+          "colorHex": "#b98b5b",
+          "glareSensitive": false,
+          "needsChairClearance": true
+        }
+      }
+    },
+    {
+      "id": "real-desk-shadow",
+      "name": "Desk Contact Shadow",
+      "transform": {
+        "position": [-1.08, 0.002, -2.35],
+        "rotationDeg": [0, 22, 0]
+      },
+      "components": {
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "ContactShadow": {
+          "size": [1.85, 1.0],
+          "opacity": 0.34,
+          "color": [0, 0, 0, 1],
+          "height": 0.003
+        }
+      }
+    },
+    {
+      "id": "real-monitor",
+      "name": "34in Ultrawide Monitor",
+      "content": {
+        "type": "asset",
+        "asset": "prop-monitor",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      "transform": {
+        "position": [-1.13, 0.75, -2.46],
+        "rotationDeg": [0, 22, 0]
+      },
+      "components": {
+        "RayInteractable": {},
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "RealWorldTarget": {
+          "targetKey": "stage-monitor",
+          "label": "34in Ultrawide Monitor",
+          "semanticLabel": "screen",
+          "archetype": "monitor",
+          "colorHex": "#38bdf8",
+          "glareSensitive": true,
+          "needsChairClearance": false
+        }
+      }
+    },
+    {
+      "id": "real-chair",
+      "name": "Ergonomic Mesh Chair",
+      "content": {
+        "type": "asset",
+        "asset": "prop-chair",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      "transform": {
+        "position": [-0.86, 0, -1.78],
+        "rotationDeg": [0, 168, 0]
+      },
+      "components": {
+        "RayInteractable": {},
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "RealWorldTarget": {
+          "targetKey": "stage-chair",
+          "label": "Ergonomic Mesh Chair",
+          "semanticLabel": "chair",
+          "archetype": "chair",
+          "colorHex": "#475569",
+          "glareSensitive": false,
+          "needsChairClearance": false
+        }
+      }
+    },
+    {
+      "id": "real-chair-shadow",
+      "name": "Chair Contact Shadow",
+      "transform": {
+        "position": [-0.86, 0.002, -1.78],
+        "rotationDeg": [0, 168, 0]
+      },
+      "components": {
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "ContactShadow": {
+          "size": [0.85, 0.85],
+          "opacity": 0.34,
+          "color": [0, 0, 0, 1],
+          "height": 0.003
+        }
+      }
+    },
+    {
+      "id": "real-sofa",
+      "name": "Boucle Lounge Sofa",
+      "content": {
+        "type": "asset",
+        "asset": "prop-sofa",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      "transform": {
+        "position": [1.26, 0, -2.02],
+        "rotationDeg": [0, -34, 0]
+      },
+      "components": {
+        "RayInteractable": {},
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "RealWorldTarget": {
+          "targetKey": "stage-sofa",
+          "label": "Boucle Lounge Sofa",
+          "semanticLabel": "couch",
+          "archetype": "sofa",
+          "colorHex": "#eae3da",
+          "glareSensitive": false,
+          "needsChairClearance": false
+        }
+      }
+    },
+    {
+      "id": "real-sofa-shadow",
+      "name": "Sofa Contact Shadow",
+      "transform": {
+        "position": [1.26, 0.002, -2.02],
+        "rotationDeg": [0, -34, 0]
+      },
+      "components": {
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "ContactShadow": {
+          "size": [2.05, 1.08],
+          "opacity": 0.36,
+          "color": [0, 0, 0, 1],
+          "height": 0.003
+        }
+      }
+    },
+    {
+      "id": "real-lamp",
+      "name": "Brushed Brass Arc Lamp",
+      "content": {
+        "type": "asset",
+        "asset": "prop-lamp",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      "transform": {
+        "position": [1.92, 0, -2.55],
+        "rotationDeg": [0, -45, 0]
+      },
+      "components": {
+        "RayInteractable": {},
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "RealWorldTarget": {
+          "targetKey": "stage-lamp",
+          "label": "Brushed Brass Arc Lamp",
+          "semanticLabel": "lamp",
+          "archetype": "lamp",
+          "colorHex": "#f5ebd8",
+          "glareSensitive": false,
+          "needsChairClearance": false
+        }
+      }
+    },
+    {
+      "id": "real-lamp-shadow",
+      "name": "Lamp Contact Shadow",
+      "transform": {
+        "position": [1.92, 0.002, -2.55],
+        "rotationDeg": [0, -45, 0]
+      },
+      "components": {
+        "StageProp": {
+          "propRole": "room-prop"
+        },
+        "ContactShadow": {
+          "size": [0.56, 0.56],
+          "opacity": 0.34,
+          "color": [0, 0, 0, 1],
+          "height": 0.003
+        }
+      }
+    },
+    {
+      "id": "vault-hud-panel",
+      "name": "RealVault Left HUD",
+      "content": {
+        "type": "asset",
+        "asset": "vault-hud-panel"
+      },
+      "transform": {
+        "position": [-0.55, 1.48, -1.36],
+        "rotationDeg": [0, 20, 0],
+        "scale": 0.8
+      },
+      "components": {
+        "RayInteractable": {},
+        "OneHandGrabbable": {}
+      }
+    },
+    {
+      "id": "ai-sim-panel",
+      "name": "RealVault Right Simulator HUD",
+      "content": {
+        "type": "asset",
+        "asset": "ai-sim-panel"
+      },
+      "transform": {
+        "position": [0.55, 1.48, -1.36],
+        "rotationDeg": [0, -20, 0],
+        "scale": 0.8
+      },
+      "components": {
+        "RayInteractable": {},
+        "OneHandGrabbable": {}
+      }
+    }
+  ]
+}

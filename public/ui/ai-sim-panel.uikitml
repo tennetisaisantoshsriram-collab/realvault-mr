@@ -1,0 +1,161 @@
+<style>
+  .panel {
+    width: 52;
+    background-color: rgba(20, 22, 28, 0.9);
+    border-color: rgba(255, 255, 255, 0.16);
+    border-width: 0.08;
+    border-radius: 2.8;
+    padding-top: 2;
+    padding-bottom: 2;
+    padding-left: 2.2;
+    padding-right: 2.2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3;
+    color: #f3f4f6;
+    font-size: 1.85;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-size: 2.4;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .score-badge {
+    background-color: #064e3b;
+    border-color: #34d399;
+    border-width: 0.08;
+    border-radius: 1.4;
+    padding-top: 0.5;
+    padding-bottom: 0.5;
+    padding-left: 1.2;
+    padding-right: 1.2;
+    font-size: 1.7;
+    font-weight: 700;
+    color: #a7f3d0;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.09);
+    border-width: 0.06;
+    border-radius: 1.8;
+    padding-top: 1.2;
+    padding-bottom: 1.2;
+    padding-left: 1.4;
+    padding-right: 1.4;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7;
+  }
+
+  .label-dim {
+    font-size: 1.45;
+    font-weight: 600;
+    color: #9ca3af;
+  }
+
+  .stat-line {
+    font-size: 1.75;
+    color: #f3f4f6;
+  }
+
+  .btn-row {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8;
+  }
+
+  .chip-btn {
+    flex-grow: 1;
+    background-color: #262933;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-width: 0.06;
+    border-radius: 1.3;
+    padding-top: 0.8;
+    padding-bottom: 0.8;
+    padding-left: 0.8;
+    padding-right: 0.8;
+    font-size: 1.65;
+    font-weight: 600;
+    color: #d1d5db;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .ai-btn {
+    flex-grow: 1;
+    background-color: #0a84ff;
+    border-radius: 1.4;
+    padding-top: 0.95;
+    padding-bottom: 0.95;
+    padding-left: 1;
+    padding-right: 1;
+    font-size: 1.75;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .ai-output {
+    font-size: 1.65;
+    line-height: 1.3;
+    color: #dbeafe;
+  }
+</style>
+
+<div class="panel">
+  <div class="header">
+    <span class="title">Spatial Simulator</span>
+    <span id="sim-score" class="score-badge">FIT 100%</span>
+  </div>
+
+  <div class="card">
+    <span class="label-dim">PHYSICS, DOOR SWEEP, SEISMIC & GLARE</span>
+    <span id="sim-collisions" class="stat-line">Collisions: 0 overlapping</span>
+    <span id="sim-walkway" class="stat-line">Door Arc & Path: 100% open</span>
+    <span id="sim-glare" class="stat-line">Sun Glare & Tip: Clear</span>
+    <div class="btn-row">
+      <button id="btn-seismic-test" class="chip-btn">Seismic Tip Test</button>
+      <button id="btn-undo-layout" class="chip-btn">Undo Move</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <span id="room-size-label" class="label-dim">TEST ROOM BOUNDS: 3.4m x 2.8m</span>
+    <div class="btn-row">
+      <button id="room-compact" class="chip-btn">2.6 x 2.4m</button>
+      <button id="room-studio" class="chip-btn">3.4 x 2.8m</button>
+      <button id="room-loft" class="chip-btn">4.2 x 3.4m</button>
+    </div>
+    <span id="sun-hour-label" class="label-dim">WINDOW SUN TIME: 3:30 PM</span>
+    <div class="btn-row">
+      <button id="sun-morning" class="chip-btn">9:00 AM</button>
+      <button id="sun-noon" class="chip-btn">12:30 PM</button>
+      <button id="sun-afternoon" class="chip-btn">3:30 PM</button>
+      <button id="sun-evening" class="chip-btn">6:00 PM</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <span class="label-dim">AI SPATIAL ARCHITECT (GROQ)</span>
+      <button id="btn-voice-toggle" class="chip-btn">Voice: Off</button>
+    </div>
+    <div class="btn-row">
+      <button id="btn-ai-optimize" class="ai-btn">AI Auto-Fit</button>
+      <button id="btn-ai-glare" class="chip-btn">Fix Glare</button>
+      <button id="btn-ai-voice" class="chip-btn">Speak Cmd</button>
+    </div>
+    <span id="ai-status-text" class="ai-output">Ready - scan objects and test layouts in mid-air.</span>
+  </div>
+</div>
